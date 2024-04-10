@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Script to run Metricbeat in foreground with the same path settings that
+# the init script / systemd unit file would do.
+umask 0027
+exec /usr/share/metricbeat/bin/metricbeat \
+  --path.home /usr/share/metricbeat \
+  --path.config /etc/metricbeat \
+  --path.data /var/lib/metricbeat \
+  --path.logs /var/log/metricbeat \
+  "$@"
